@@ -11,3 +11,10 @@ To run inside Docker, run the commands:
 ###### docker-compose up
 
 To see a list of available endpoints, access the Swagger doc at http://localhost:5300/swagger/index.html. Any URL in the Doc has to be appended to the service's address (http://localhost:5300).
+
+Additionally, to access the Redis memory remotely, the following commands can be run in the terminal:
+###### docker exec -it [redis cache container name] sh
+###### redis-cli
+###### select 0
+###### scan 0
+###### hgetall [cache key]
