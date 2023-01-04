@@ -10,6 +10,7 @@ public interface ICartService
     public Task<ShoppingCartDto> AddItemAsync(string userId, LineItemDto lineItem);
     public Task<ShoppingCartDto> RemoveItemAsync(string userId, string itemId);
     public Task<ShoppingCartDto> ChangeQuantityAsync(string userId, LineItemDto lineItem);
+    public Task<ShoppingCartDto> CheckoutCartAsync(string userId);
 }
 
 public class CartService : ICartService
@@ -85,9 +86,14 @@ public class CartService : ICartService
         return cart;
     }
 
+    public async Task<ShoppingCartDto> CheckoutCartAsync(string userId)
+    {
+        return await CreateCartAsync(userId);
+    }
+
     private async Task<ShoppingCartDto> CreateCartAsync(string userId)
     {
-        Console.WriteLine($"--> Cart not found for user {userId}. Creating the cart...");
+        Console.WriteLine($"--> Creating the cart for user {userId}...");
 
         var cart = new ShoppingCartDto
         {

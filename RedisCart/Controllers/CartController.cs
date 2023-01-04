@@ -52,4 +52,14 @@ public class CartController : ControllerBase
 
         return Ok(cart);
     }
+
+    [HttpPut("checkout")]
+    public async Task<ActionResult<ShoppingCartDto>> CheckoutCart(string userId)
+    {
+        Console.WriteLine($"--> Checking out the cart of user {userId}");
+
+        var cart = await _cartService.CheckoutCartAsync(userId);
+
+        return Ok(cart);
+    }
 }
